@@ -3,7 +3,7 @@ from django.db import models
 
 class Worker(models.Model):
     name = models.CharField(max_length=80,
-                            verbose_name="Имя работник")
+                            verbose_name="Имя работника")
     phone_number = models.IntegerField(verbose_name="Номер телефона")
 
     class Meta:
@@ -44,4 +44,4 @@ class Visit(models.Model):
         verbose_name_plural = "Список посещений"
 
     def __str__(self):
-        return f"{self.date}"
+        return f" Посещение {self.store} {self.date}"
