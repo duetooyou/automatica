@@ -13,14 +13,20 @@ class StoreView(APIView):
         try:
             self.request.data['phone_number']
         except KeyError:
-            return Response({'Введите номер в тело запроса'}, HTTP_400_BAD_REQUEST)
+            return Response({"Введите номер в тело запроса"}, HTTP_400_BAD_REQUEST)
         else:
             store_list = Store.objects.filter(worker__phone_number=self.request.data['phone_number']). \
                 select_related('worker')
             serializer = StoreSerializer(store_list, many=True)
             return Response(serializer.data)
 
+    def get_view_name(self):
+        return f"Список точек работника"
+
 
 class VisitCreateView(CreateAPIView):
     serializer_class = VisitSerializer
     queryset = Visit.objects.all()
+
+    def get_view_name(self):
+        return f"Создать посещение"
