@@ -9,9 +9,19 @@ class WorkerAdmin(admin.ModelAdmin):
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
-    ordering = ('id',)
+    pass
 
 
 @admin.register(Visit)
 class VisitAdmin(admin.ModelAdmin):
     actions = None
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
